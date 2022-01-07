@@ -1,12 +1,11 @@
-package com.compass.biblioteca.services;
+package com.grupo3.app.Services;
 
 import java.util.List;
 
+import com.grupo3.app.Dto.BibliotecarioDto;
+import com.grupo3.app.Dto.BibliotecarioFormDto;
+import com.grupo3.app.Dto.MessageResponseDto;
 import org.springframework.stereotype.Service;
-
-import com.compass.biblioteca.entity.dto.BibliotecarioDto;
-import com.compass.biblioteca.entity.dto.BibliotecarioFormDto;
-import com.compass.biblioteca.entity.dto.MessageResponseDto;
 
 @Service
 public interface BibliotecarioService {

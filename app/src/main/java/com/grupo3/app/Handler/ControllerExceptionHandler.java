@@ -1,5 +1,6 @@
-package com.compass.biblioteca.handler;
+package com.grupo3.app.Handler;
 
+import com.grupo3.app.Exceptions.ResourceNotFoudException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-
-import com.compass.biblioteca.exceptions.ResourceNotFoudException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,17 +1,17 @@
-package com.compass.biblioteca.services;
+package com.grupo3.app.Services;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.grupo3.app.Dto.BibliotecarioDto;
+import com.grupo3.app.Dto.BibliotecarioFormDto;
+import com.grupo3.app.Dto.MessageResponseDto;
+import com.grupo3.app.Entity.Bibliotecario;
+import com.grupo3.app.Exceptions.ResourceNotFoudException;
+import com.grupo3.app.Repository.BibliotecarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.compass.biblioteca.entity.Bibliotecario;
-import com.compass.biblioteca.entity.dto.BibliotecarioDto;
-import com.compass.biblioteca.entity.dto.BibliotecarioFormDto;
-import com.compass.biblioteca.entity.dto.MessageResponseDto;
-import com.compass.biblioteca.exceptions.ResourceNotFoudException;
-import com.compass.biblioteca.repository.BibliotecarioRepository;
 
 @Service
 public class BibliotecarioServiceImple implements BibliotecarioService {

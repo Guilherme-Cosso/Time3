@@ -1,4 +1,4 @@
-package com.compass.biblioteca.entity;
+package com.grupo3.app.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

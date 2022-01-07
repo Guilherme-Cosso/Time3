@@ -1,4 +1,4 @@
-package com.compass.biblioteca.exceptions;
+package com.grupo3.app.Exceptions;
 
 public class ResourceNotFoudException extends RuntimeException {
 

@@ -7,7 +7,6 @@ import com.grupo3.app.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class UserServiceImple implements UserService{
@@ -16,8 +15,6 @@ public class UserServiceImple implements UserService{
     private UserRepository userRepository;
 
     private ModelMapper modelMapper;
-
-
 
 
     @Override

@@ -1,4 +1,4 @@
-package com.compass.biblioteca.entity.dto;
+package com.grupo3.app.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

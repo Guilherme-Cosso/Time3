@@ -1,6 +1,6 @@
-package com.grupo3.app.repository;
+package com.grupo3.app.Repository;
 
-import com.grupo3.app.entity.Livro;
+import com.grupo3.app.Entity.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.grupo3.app;
+package com.grupo3.appp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
