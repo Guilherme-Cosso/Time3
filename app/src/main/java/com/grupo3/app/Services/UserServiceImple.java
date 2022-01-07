@@ -8,20 +8,22 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImple implements UserService{
 
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private ModelMapper modelMapper;
 
 
     @Override
     public UserDto save(UserFormDto body) {
-
         User user = modelMapper.map(body, User.class);
-        System.out.println(user.getName());
         User userSave = this.userRepository.save(user);
         return  modelMapper.map(userSave, UserDto.class);
     }
@@ -30,6 +32,12 @@ public class UserServiceImple implements UserService{
     public UserDto getUser(Long id) {
         User user = this.userRepository.getOne(id);
         return modelMapper.map(user,UserDto.class);
+    }
+
+    @Override
+    public List<UserDto> getUsers() {
+        List<User> list = this.userRepository.findAll();
+        return  list.stream().map(pa ->  modelMapper.map(pa, UserDto.class)).collect(Collectors.toList());
     }
 
 }

@@ -5,6 +5,8 @@ import com.grupo3.app.Dto.UserFormDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public interface UserService {
 
@@ -12,4 +14,5 @@ public interface UserService {
     public UserDto getUser(Long id);
 
 
+    public List<UserDto> getUsers();
 }
