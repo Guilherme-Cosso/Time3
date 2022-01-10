@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +16,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull @NotEmpty
     private String name;
+    @NotNull @NotEmpty
     private String email;
+    @NotNull @NotEmpty
     private String cpf;
+    @NotNull @NotEmpty
     private String telefone;
+    @NotNull @NotEmpty
     private String matricula;
     // List livros
 }

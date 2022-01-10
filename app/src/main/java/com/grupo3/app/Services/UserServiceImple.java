@@ -40,4 +40,28 @@ public class UserServiceImple implements UserService{
         return  list.stream().map(pa ->  modelMapper.map(pa, UserDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public boolean getUserEmail(String email) {
+        List<User> list = this.userRepository.findByEmail(email);
+        boolean resp = true;
+        if(list.size() != 0) resp = false;
+        return resp;
+    }
+
+    @Override
+    public UserDto updateUser(Long id, UserFormDto body) {
+        User user = userRepository.getOne(id);
+        user.setName(body.getName());
+        user.setCpf(body.getCpf());
+        user.setEmail(body.getEmail());
+        user.setTelefone(body.getTelefone());
+        user.setMatricula(body.getMatricula());
+        return  modelMapper.map(user, UserDto.class);
+    }
+
+    @Override
+    public void deletUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
 }

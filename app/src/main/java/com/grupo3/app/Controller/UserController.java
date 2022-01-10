@@ -1,5 +1,6 @@
 package com.grupo3.app.Controller;
 
+import com.grupo3.app.Dto.MessageResponseDto;
 import com.grupo3.app.Dto.UserDto;
 import com.grupo3.app.Dto.UserFormDto;
 import com.grupo3.app.Services.UserService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,11 +22,13 @@ public class UserController {
     private UserService service;
 
     // CRIA um novo User
-    @PostMapping
+    @PostMapping("/cadastro")
     @Transactional
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserFormDto body){
-        UserDto userDto = this.service.save(body);
-        return ResponseEntity.ok(userDto);
+    public ResponseEntity<UserDto> saveUser(@RequestBody @Valid UserFormDto body){
+        if(!this.service.getUserEmail(body.getEmail())){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(this.service.save(body));
     }
 
     @GetMapping("/{id}")
@@ -37,7 +41,20 @@ public class UserController {
         return ResponseEntity.ok(this.service.getUsers());
     }
 
-    
+    @PutMapping
+    @Transactional
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody  @Valid UserFormDto body){
+        return ResponseEntity.ok(this.service.updateUser(id, body));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletAssociado(@PathVariable Long id){
+        service.deletUser(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
 
 
 }

@@ -15,4 +15,10 @@ public interface UserService {
 
 
     public List<UserDto> getUsers();
+
+    boolean getUserEmail(String email);
+
+    public UserDto updateUser(Long id, UserFormDto body);
+
+    public void deletUser(Long id);
 }
