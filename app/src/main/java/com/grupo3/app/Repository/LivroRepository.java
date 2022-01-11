@@ -11,4 +11,6 @@ import java.util.List;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
     List<Livro> findByUser(User id);
 
+	List<Livro> findAllByGenero(String genero);
+
 }
