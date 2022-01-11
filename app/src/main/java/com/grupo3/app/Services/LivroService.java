@@ -22,4 +22,6 @@ public interface LivroService {
     public List<LivroDto> livrosAssociados(Long id);
 
     public LivroDto deletLivroUsuario(Long id, Long ids);
+
+    public List<LivroDto> livrosDisponivies();
 }

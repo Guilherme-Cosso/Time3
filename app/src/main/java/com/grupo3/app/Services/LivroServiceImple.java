@@ -97,4 +97,10 @@ public class LivroServiceImple implements LivroService {
             return null;
         }
     }
+
+    @Override
+    public List<LivroDto> livrosDisponivies() {
+        List<Livro> livros = livroRepository.findByUser(null);
+        return livros.stream().map(pa -> modelMapper.map(pa, LivroDto.class)).collect(Collectors.toList());
+    }
 }

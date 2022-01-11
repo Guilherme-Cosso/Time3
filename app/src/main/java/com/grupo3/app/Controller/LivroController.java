@@ -67,6 +67,11 @@ public class LivroController {
         return ResponseEntity.ok(service.deletLivroUsuario(id, idl));
     }
 
+    @GetMapping("/disponiveis")
+    public ResponseEntity<List<LivroDto>> livrosDisponivies() {
+        return ResponseEntity.ok(this.service.livrosDisponivies());
+    }
+
 
 
 
