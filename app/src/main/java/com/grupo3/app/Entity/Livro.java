@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -15,10 +17,16 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @NotEmpty
     private String name;
+    @NotNull @NotEmpty
     private String autor;
+    @NotNull @NotEmpty
     private String descricao;
+    @NotNull @NotEmpty
     private String editora;
+    @NotNull @NotEmpty
     private String genero;
     private LocalDate datapublicacao;
     @ManyToOne
