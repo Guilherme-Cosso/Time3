@@ -1,5 +1,6 @@
 package com.grupo3.app.Dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.grupo3.app.Entity.User;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ public class LivroDtoViculado {
     private String editora;
     private String genero;
     private LocalDate datapublicacao;
-    private User user;
+    @JsonManagedReference
+    private UserDto user;
 }

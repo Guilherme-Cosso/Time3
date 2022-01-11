@@ -1,6 +1,7 @@
 package com.grupo3.app.Controller;
 
 import com.grupo3.app.Dto.LivroDto;
+import com.grupo3.app.Dto.LivroDtoViculado;
 import com.grupo3.app.Dto.LivroFormDto;
 import com.grupo3.app.Dto.VincularLivroUserDto;
 import com.grupo3.app.Repository.UserRepository;
@@ -52,7 +53,7 @@ public class LivroController {
 
     @PostMapping("/usuario")
     @Transactional
-    public ResponseEntity<LivroDto> livroUser(@RequestBody VincularLivroUserDto body) {
+    public ResponseEntity<LivroDtoViculado> livroUser(@RequestBody VincularLivroUserDto body) {
         return ResponseEntity.ok(this.service.livroUser(body));
     }
 
@@ -71,10 +72,5 @@ public class LivroController {
     public ResponseEntity<List<LivroDto>> livrosDisponivies() {
         return ResponseEntity.ok(this.service.livrosDisponivies());
     }
-
-
-
-
-
 
 }

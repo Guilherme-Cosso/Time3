@@ -1,6 +1,7 @@
 package com.grupo3.app.Services;
 
 import com.grupo3.app.Dto.LivroDto;
+import com.grupo3.app.Dto.LivroDtoViculado;
 import com.grupo3.app.Dto.LivroFormDto;
 import com.grupo3.app.Dto.VincularLivroUserDto;
 import com.grupo3.app.Entity.Livro;
@@ -64,13 +65,13 @@ public class LivroServiceImple implements LivroService {
     }
 
     @Override
-    public LivroDto livroUser(VincularLivroUserDto livroUserDto) {
+    public LivroDtoViculado livroUser(VincularLivroUserDto livroUserDto) {
         Optional<User> user = userRepository.findById(livroUserDto.getIdUser());
         Optional<Livro> livro = livroRepository.findById(livroUserDto.getIdLivro());
         if(user.isPresent() && livro.isPresent()){
             Livro livroSave = livroRepository.getOne(livroUserDto.getIdLivro());
             livroSave.setUser(user.get());
-            return modelMapper.map(livroSave, LivroDto.class);
+            return modelMapper.map(livroSave, LivroDtoViculado.class);
         }
         else{
             return null;

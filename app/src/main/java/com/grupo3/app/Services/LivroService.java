@@ -1,6 +1,7 @@
 package com.grupo3.app.Services;
 
 import com.grupo3.app.Dto.LivroDto;
+import com.grupo3.app.Dto.LivroDtoViculado;
 import com.grupo3.app.Dto.LivroFormDto;
 import com.grupo3.app.Dto.VincularLivroUserDto;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public interface LivroService {
     public LivroDto updateLivro(Long id, @RequestBody LivroFormDto livroFormDto);
     public void deleteLivro(Long id);
 
-    public LivroDto livroUser(VincularLivroUserDto livroUserDto);
+    public LivroDtoViculado livroUser(VincularLivroUserDto livroUserDto);
 
     public List<LivroDto> livrosAssociados(Long id);
 
