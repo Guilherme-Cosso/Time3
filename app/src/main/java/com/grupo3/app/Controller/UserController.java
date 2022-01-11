@@ -3,6 +3,8 @@ package com.grupo3.app.Controller;
 import com.grupo3.app.Dto.MessageResponseDto;
 import com.grupo3.app.Dto.UserDto;
 import com.grupo3.app.Dto.UserFormDto;
+import com.grupo3.app.Handler.ErroValidacaoDto;
+import com.grupo3.app.Handler.ErrorMessage;
 import com.grupo3.app.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,7 @@ public class UserController {
     @PostMapping("/cadastro")
     @Transactional
     public ResponseEntity<UserDto> saveUser(@RequestBody @Valid UserFormDto body){
+
         if(!this.service.getUserEmail(body.getEmail())){
             return ResponseEntity.badRequest().build();
         }

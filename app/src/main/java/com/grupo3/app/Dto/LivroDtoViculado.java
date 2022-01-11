@@ -1,19 +1,11 @@
-package com.grupo3.app.Entity;
+package com.grupo3.app.Dto;
 
-import lombok.AllArgsConstructor;
+import com.grupo3.app.Entity.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Entity
-public class Livro {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LivroDtoViculado {
     private Long id;
     private String name;
     private String autor;
@@ -21,6 +13,5 @@ public class Livro {
     private String editora;
     private String genero;
     private LocalDate datapublicacao;
-    @ManyToOne
     private User user;
 }

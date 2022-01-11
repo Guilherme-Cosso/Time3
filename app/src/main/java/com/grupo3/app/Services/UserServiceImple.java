@@ -43,8 +43,7 @@ public class UserServiceImple implements UserService{
     @Override
     public boolean getUserEmail(String email) {
         List<User> list = this.userRepository.findByEmail(email);
-        boolean resp = true;
-        if(list.size() != 0) resp = false;
+        boolean resp = list.size() == 0;
         return resp;
     }
 

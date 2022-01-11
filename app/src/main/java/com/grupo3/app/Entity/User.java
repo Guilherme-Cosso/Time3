@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,5 +27,7 @@ public class User {
     private String telefone;
     @NotNull @NotEmpty
     private String matricula;
+    @OneToMany
+    private List<Livro> livros;
     // List livros
 }

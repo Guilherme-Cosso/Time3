@@ -11,8 +11,8 @@ import java.util.List;
 public interface UserService {
 
     public UserDto save(@RequestBody UserFormDto userFormDto);
-    public UserDto getUser(Long id);
 
+    public UserDto getUser(Long id);
 
     public List<UserDto> getUsers();
 

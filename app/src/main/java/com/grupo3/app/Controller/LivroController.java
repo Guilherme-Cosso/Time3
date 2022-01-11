@@ -2,6 +2,8 @@ package com.grupo3.app.Controller;
 
 import com.grupo3.app.Dto.LivroDto;
 import com.grupo3.app.Dto.LivroFormDto;
+import com.grupo3.app.Dto.VincularLivroUserDto;
+import com.grupo3.app.Repository.UserRepository;
 import com.grupo3.app.Services.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,4 +49,27 @@ public class LivroController {
         service.deleteLivro(id);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/usuario")
+    @Transactional
+    public ResponseEntity<LivroDto> livroUser(@RequestBody VincularLivroUserDto body) {
+        return ResponseEntity.ok(this.service.livroUser(body));
+    }
+
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<LivroDto>> livrosAssociados(@PathVariable Long id) {
+        return ResponseEntity.ok(this.service.livrosAssociados(id));
+    }
+
+    @DeleteMapping("/{idl}/usuario/{id}")
+    @Transactional
+    public ResponseEntity<LivroDto> deletAssociadoPartido(@PathVariable Long id ,@PathVariable Long idl){
+        return ResponseEntity.ok(service.deletLivroUsuario(id, idl));
+    }
+
+
+
+
+
+
 }
