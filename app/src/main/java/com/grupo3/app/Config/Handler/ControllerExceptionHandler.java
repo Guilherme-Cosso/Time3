@@ -1,6 +1,6 @@
-package com.grupo3.app.config.Handler;
+package com.grupo3.app.Config.Handler;
 
-import com.grupo3.app.config.Exceptions.ResourceNotFoudException;
+import com.grupo3.app.Config.Exceptions.ResourceNotFoudException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

@@ -1,4 +1,4 @@
-package com.grupo3.app.config.Exceptions;
+package com.grupo3.app.Config.Exceptions;
 
 public class ResourceNotFoudException extends RuntimeException {
 

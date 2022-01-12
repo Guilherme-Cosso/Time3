@@ -1,4 +1,4 @@
-package com.grupo3.app.config.Security;
+package com.grupo3.app.Config.Security;
 
 import com.grupo3.app.Repository.UserRepository;
 import com.grupo3.app.Services.AutenticacaoServiceImple;

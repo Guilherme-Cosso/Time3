@@ -1,9 +1,8 @@
-package com.grupo3.app.config.Security;
+package com.grupo3.app.Config.Security;
 
 import com.grupo3.app.Entity.User;
 import com.grupo3.app.Repository.UserRepository;
 import com.grupo3.app.Services.TokenService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
