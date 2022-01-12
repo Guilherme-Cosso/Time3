@@ -7,7 +7,7 @@ import com.grupo3.app.Dto.BibliotecarioDto;
 import com.grupo3.app.Dto.BibliotecarioFormDto;
 import com.grupo3.app.Dto.MessageResponseDto;
 import com.grupo3.app.Entity.Bibliotecario;
-import com.grupo3.app.Exceptions.ResourceNotFoudException;
+import com.grupo3.app.config.Exceptions.ResourceNotFoudException;
 import com.grupo3.app.Repository.BibliotecarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

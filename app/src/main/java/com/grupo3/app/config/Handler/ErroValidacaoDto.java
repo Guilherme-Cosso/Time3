@@ -1,4 +1,4 @@
-package com.grupo3.app.Handler;
+package com.grupo3.app.config.Handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

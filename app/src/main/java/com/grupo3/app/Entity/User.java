@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,39 +36,42 @@ public class User implements UserDetails {
     @OneToMany
     private List<Livro> livros;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Perfil> perfis =new ArrayList();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.perfis;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.senha;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
     // List livros
 }
