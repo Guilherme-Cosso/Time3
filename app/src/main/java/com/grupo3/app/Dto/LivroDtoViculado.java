@@ -1,7 +1,6 @@
 package com.grupo3.app.Dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.grupo3.app.Entity.User;
 import lombok.Data;
 
 import java.time.LocalDate;

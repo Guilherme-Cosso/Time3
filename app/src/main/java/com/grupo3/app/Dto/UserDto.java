@@ -15,4 +15,5 @@ public class UserDto {
     private String cpf;
     private String telefone;
     private String matricula;
+    private String senha;
 }

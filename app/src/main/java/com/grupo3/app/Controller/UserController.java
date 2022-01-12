@@ -1,13 +1,9 @@
 package com.grupo3.app.Controller;
 
-import com.grupo3.app.Dto.MessageResponseDto;
 import com.grupo3.app.Dto.UserDto;
 import com.grupo3.app.Dto.UserFormDto;
-import com.grupo3.app.Handler.ErroValidacaoDto;
-import com.grupo3.app.Handler.ErrorMessage;
 import com.grupo3.app.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,9 +51,5 @@ public class UserController {
         service.deletUser(id);
         return ResponseEntity.ok().build();
     }
-
-
-
-
 
 }
