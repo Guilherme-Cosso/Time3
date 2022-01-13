@@ -14,5 +14,5 @@ public class LivroDtoViculado {
     private String genero;
     private LocalDate datapublicacao;
     @JsonManagedReference
-    private UserDto user;
+    private AlunoDto user;
 }
