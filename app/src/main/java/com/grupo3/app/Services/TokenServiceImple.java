@@ -1,6 +1,6 @@
 package com.grupo3.app.Services;
 
-import com.grupo3.app.Entity.User;
+import com.grupo3.app.Entity.Aluno;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -22,7 +22,7 @@ public class TokenServiceImple implements TokenService{
 
     @Override
     public String gerarToken(Authentication authentication) {
-        User userL = (User) authentication.getPrincipal();
+        Aluno userL = (Aluno) authentication.getPrincipal();
         Date hoje = new Date();
         Date dataExpiration = new Date(hoje.getTime() + 8450000L);
         return Jwts.builder()

@@ -17,18 +17,13 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @NotEmpty
+
     private String name;
-    @NotNull @NotEmpty
     private String autor;
-    @NotNull @NotEmpty
     private String descricao;
-    @NotNull @NotEmpty
     private String editora;
-    @NotNull @NotEmpty
     private String genero;
     private LocalDate datapublicacao;
     @ManyToOne
-    private User user;
+    private Aluno user;
 }

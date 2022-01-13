@@ -2,8 +2,8 @@ package com.grupo3.app.Services;
 
 import com.grupo3.app.Dto.UserDto;
 import com.grupo3.app.Dto.UserFormDto;
-import com.grupo3.app.Entity.User;
-import com.grupo3.app.Repository.UserRepository;
+import com.grupo3.app.Entity.Aluno;
+import com.grupo3.app.Repository.AlunoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class UserServiceImple implements UserService{
 
     @Autowired
-    private UserRepository userRepository;
+    private AlunoRepository userRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -23,33 +23,33 @@ public class UserServiceImple implements UserService{
 
     @Override
     public UserDto save(UserFormDto body) {
-        User user = modelMapper.map(body, User.class);
-        User userSave = this.userRepository.save(user);
+        Aluno user = modelMapper.map(body, Aluno.class);
+        Aluno userSave = this.userRepository.save(user);
         return  modelMapper.map(userSave, UserDto.class);
     }
 
     @Override
     public UserDto getUser(Long id) {
-        User user = this.userRepository.getOne(id);
+        Aluno user = this.userRepository.getOne(id);
         return modelMapper.map(user,UserDto.class);
     }
 
     @Override
     public List<UserDto> getUsers() {
-        List<User> list = this.userRepository.findAll();
+        List<Aluno> list = this.userRepository.findAll();
         return  list.stream().map(pa ->  modelMapper.map(pa, UserDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public boolean getUserEmail(String email) {
-        List<User> list = this.userRepository.findByEmail(email);
+        List<Aluno> list = this.userRepository.findByEmail(email);
         boolean resp = list.size() == 0;
         return resp;
     }
 
     @Override
     public UserDto updateUser(Long id, UserFormDto body) {
-        User user = userRepository.getOne(id);
+        Aluno user = userRepository.getOne(id);
         user.setName(body.getName());
         user.setCpf(body.getCpf());
         user.setEmail(body.getEmail());

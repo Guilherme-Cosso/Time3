@@ -10,9 +10,9 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class Perfil implements GrantedAuthority {
-
-
-    @Id
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
