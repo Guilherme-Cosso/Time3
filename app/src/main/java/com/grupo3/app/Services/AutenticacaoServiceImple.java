@@ -1,7 +1,7 @@
 package com.grupo3.app.Services;
 
 import com.grupo3.app.Dto.LoginForm;
-import com.grupo3.app.Entity.User;
+import com.grupo3.app.Entity.Aluno;
 import com.grupo3.app.Repository.AutenticacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +25,7 @@ public class AutenticacaoServiceImple implements UserDetailsService /*, Autentic
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-      Optional<User> user =  autenticacaoRepository.findByEmail(email);
+      Optional<Aluno> user =  autenticacaoRepository.findByEmail(email);
       if(user.isPresent()){
           return user.get();
       }

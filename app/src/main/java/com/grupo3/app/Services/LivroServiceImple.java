@@ -5,9 +5,9 @@ import com.grupo3.app.Dto.LivroDtoViculado;
 import com.grupo3.app.Dto.LivroFormDto;
 import com.grupo3.app.Dto.VincularLivroUserDto;
 import com.grupo3.app.Entity.Livro;
-import com.grupo3.app.Entity.User;
+import com.grupo3.app.Entity.Aluno;
 import com.grupo3.app.Repository.LivroRepository;
-import com.grupo3.app.Repository.UserRepository;
+import com.grupo3.app.Repository.AlunoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class LivroServiceImple implements LivroService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private AlunoRepository userRepository;
 
 	@Autowired
 	private LivroRepository livroRepository;
@@ -67,7 +67,7 @@ public class LivroServiceImple implements LivroService {
 
 	@Override
 	public LivroDtoViculado livroUser(VincularLivroUserDto livroUserDto) {
-		Optional<User> user = userRepository.findById(livroUserDto.getIdUser());
+		Optional<Aluno> user = userRepository.findById(livroUserDto.getIdUser());
 		Optional<Livro> livro = livroRepository.findById(livroUserDto.getIdLivro());
 		if (user.isPresent() && livro.isPresent()) {
 			Livro livroSave = livroRepository.getOne(livroUserDto.getIdLivro());
@@ -80,14 +80,14 @@ public class LivroServiceImple implements LivroService {
 
 	@Override
 	public List<LivroDto> livrosAssociados(Long id) {
-		Optional<User> user = userRepository.findById(id);
+		Optional<Aluno> user = userRepository.findById(id);
 		List<Livro> livros = livroRepository.findByUser(user.get());
 		return livros.stream().map(pa -> modelMapper.map(pa, LivroDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public LivroDto deletLivroUsuario(Long id, Long ids) {
-		Optional<User> user = userRepository.findById(3L);
+		Optional<Aluno> user = userRepository.findById(3L);
 		Optional<Livro> livro = livroRepository.findById(1L);
 		if (user.isPresent() && livro.isPresent()) {
 			Livro livroSave = livroRepository.getOne(ids);

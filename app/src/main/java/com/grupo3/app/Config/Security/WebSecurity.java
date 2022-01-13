@@ -1,6 +1,6 @@
 package com.grupo3.app.Config.Security;
 
-import com.grupo3.app.Repository.UserRepository;
+import com.grupo3.app.Repository.AlunoRepository;
 import com.grupo3.app.Services.AutenticacaoServiceImple;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenService tokenService;
     @Autowired
-    private UserRepository userRepository;
+    private AlunoRepository userRepository;
 
     @Override
     @Bean
