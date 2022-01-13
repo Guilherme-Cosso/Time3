@@ -2,7 +2,7 @@ package com.grupo3.app.Controller;
 
 import com.grupo3.app.Dto.AlunoDto;
 import com.grupo3.app.Dto.AlunoFormDto;
-import com.grupo3.app.Services.UserService;
+import com.grupo3.app.Services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class AlunoController {
 
 
     @Autowired
-    private UserService service;
+    private AlunoService service;
 
     // CRIA um novo User
     @PostMapping("/cadastro")

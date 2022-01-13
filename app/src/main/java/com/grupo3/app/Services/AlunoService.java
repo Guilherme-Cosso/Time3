@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
-public interface UserService {
+public interface AlunoService {
 
     public AlunoDto save(@RequestBody AlunoFormDto userFormDto);
 
