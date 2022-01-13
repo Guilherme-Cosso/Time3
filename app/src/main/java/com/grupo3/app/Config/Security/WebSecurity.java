@@ -38,11 +38,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     // Configuraçao de Autorizaçãp
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/user/*").permitAll()
+        http.csrf().disable().
+                authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/livro").permitAll()
+                .antMatchers(HttpMethod.POST, "/aluno/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/bibliotecario").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .anyRequest().anonymous();
+                .anyRequest().authenticated();
 //                .anyRequest().authenticated()
 //                .and().csrf().disable();
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

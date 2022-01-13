@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grupo3.app.Services.BibliotecarioService;
 
 @RestController
-@RequestMapping("/bibliotecarios")
+@RequestMapping("/bibliotecario")
 public class BibliotecarioController {
 
 	@Autowired
@@ -34,7 +34,6 @@ public class BibliotecarioController {
 	@Transactional
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponseDto cria(@RequestBody @Valid BibliotecarioFormDto bibliotecarioFormDto) {
-
 		return this.service.criar(bibliotecarioFormDto);
 	}
 

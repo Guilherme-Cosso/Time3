@@ -1,5 +1,6 @@
 package com.grupo3.app.Dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ public class AlunoFormDto {
 	@NotBlank
     private String name;
 	@NotBlank
+    @Email
     private String email;
 	@NotBlank
     private String cpf;

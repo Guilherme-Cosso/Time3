@@ -19,4 +19,6 @@ public class BibliotecarioFormDto {
 	private String cpf;
 	@NotBlank
 	private String telefone;
+	@NotBlank
+	private String senha;
 }
