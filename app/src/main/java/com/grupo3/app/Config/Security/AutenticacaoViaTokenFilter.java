@@ -1,7 +1,9 @@
 package com.grupo3.app.Config.Security;
 
 import com.grupo3.app.Entity.Aluno;
+import com.grupo3.app.Entity.Usuario;
 import com.grupo3.app.Repository.AlunoRepository;
+import com.grupo3.app.Repository.AutenticacaoRepository;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +19,9 @@ import java.util.Optional;
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
     private TokenService tokenService;
-    private AlunoRepository userRepository;
+    private AutenticacaoRepository userRepository;
 
-    public AutenticacaoViaTokenFilter(TokenService tokenService, AlunoRepository userRepository){
+    public AutenticacaoViaTokenFilter(TokenService tokenService, AutenticacaoRepository userRepository){
         this.tokenService =tokenService;
         this.userRepository = userRepository;
     }
@@ -37,8 +39,8 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
     }
 
     private void autenticarUser(String token) {
-        Optional<Aluno> user = userRepository.findById(tokenService.getToken(token));
-        UsernamePasswordAuthenticationToken authentication =  new UsernamePasswordAuthenticationToken(user.get(),null, user.get().getPerfis());
+        Optional<Usuario> user = userRepository.findById(tokenService.getToken(token));
+        UsernamePasswordAuthenticationToken authentication =  new UsernamePasswordAuthenticationToken(user.get(),null, user.get().getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 

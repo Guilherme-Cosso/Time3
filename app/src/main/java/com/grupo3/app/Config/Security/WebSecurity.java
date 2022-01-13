@@ -1,6 +1,7 @@
 package com.grupo3.app.Config.Security;
 
 import com.grupo3.app.Repository.AlunoRepository;
+import com.grupo3.app.Repository.AutenticacaoRepository;
 import com.grupo3.app.Services.AutenticacaoServiceImple;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    AutenticacaoServiceImple autenticacaoService;
-    @Autowired
-    private TokenService tokenService;
-    @Autowired
-    private AlunoRepository userRepository;
+//    @Autowired
+//    AutenticacaoServiceImple autenticacaoService;
+//    @Autowired
+//    private TokenService tokenService;
+//    @Autowired
+//    private AutenticacaoRepository userRepository;
 
     @Override
     @Bean
@@ -39,19 +40,21 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,userRepository), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().anonymous();
+//                .anyRequest().authenticated()
+//                .and().csrf().disable();
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,userRepository), UsernamePasswordAuthenticationFilter.class);
                 //.and().formLogin();
     }
 
     //
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
+//    }
 
     // Recursos estaticos (Css, JS , etc ...)
     @Override

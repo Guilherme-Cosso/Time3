@@ -16,16 +16,11 @@ import java.util.List;
 public class Aluno extends Usuario {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String name;
-    private String email;
     private String cpf;
     private String telefone;
     private String matricula;
-    private String senha;
     @OneToMany
     private List<Livro> livros;
 
