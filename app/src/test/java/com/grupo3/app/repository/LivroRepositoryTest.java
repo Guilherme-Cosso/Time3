@@ -1,5 +1,4 @@
-package com.grupo3.app;
-
+package com.grupo3.app.repository;
 
 import com.grupo3.app.Entity.Livro;
 import com.grupo3.app.Repository.LivroRepository;
