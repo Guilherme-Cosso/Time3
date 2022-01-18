@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +33,8 @@ public class AlunoServiceImple implements AlunoService{
     @Override
     public AlunoDto save(AlunoFormDto body) {
         Aluno user = modelMapper.map(body, Aluno.class);
+        Random mat = new Random();
+        user.setMatricula(String.valueOf(mat.nextInt()));
         Optional<Perfil> perfil = perfilRepository.findById(1L);
         List<Perfil> perfils = new ArrayList<>();
         if (perfil.isPresent()){
@@ -41,6 +44,8 @@ public class AlunoServiceImple implements AlunoService{
         Aluno userSave = this.userRepository.save(user);
         return  modelMapper.map(userSave, AlunoDto.class);
     }
+
+
 
     @Override
     public AlunoDto getUser(Long id) {
@@ -68,7 +73,6 @@ public class AlunoServiceImple implements AlunoService{
         user.setCpf(body.getCpf());
         user.setEmail(body.getEmail());
         user.setTelefone(body.getTelefone());
-        user.setMatricula(body.getMatricula());
         return  modelMapper.map(user, AlunoDto.class);
     }
 

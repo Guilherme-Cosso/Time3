@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserService autenticacaoService;
+    UserService userService;
 
     @Autowired
     private TokenService tokenService;
@@ -43,6 +43,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable().
                 authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/livro").hasRole("ADM")
+                .antMatchers(HttpMethod.DELETE, "/livro/*").hasRole("ADM")
+                .antMatchers(HttpMethod.PUT, "/livro/*").hasRole("ADM")
                 .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
                 .antMatchers(HttpMethod.GET, "/aluno/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/livro").permitAll()
@@ -59,7 +61,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     //
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     // Recursos estaticos (Css, JS , etc ...)

@@ -23,6 +23,5 @@ public class LivroFormDto {
     private String editora;
 	@NotBlank
     private String genero;
-	@NotBlank
     private LocalDate datapublicacao;
 }

@@ -21,8 +21,6 @@ public class AlunoFormDto {
     private String cpf;
 	@NotBlank
     private String telefone;
-	@NotBlank
-    private String matricula;
     @NotBlank
     private String senha;
 }
