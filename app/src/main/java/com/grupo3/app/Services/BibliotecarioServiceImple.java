@@ -1,6 +1,8 @@
 package com.grupo3.app.Services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.grupo3.app.Dto.BibliotecarioDto;
@@ -8,7 +10,9 @@ import com.grupo3.app.Dto.BibliotecarioFormDto;
 import com.grupo3.app.Dto.MessageResponseDto;
 import com.grupo3.app.Entity.Bibliotecario;
 import com.grupo3.app.Config.Exceptions.ResourceNotFoudException;
+import com.grupo3.app.Entity.Perfil;
 import com.grupo3.app.Repository.BibliotecarioRepository;
+import com.grupo3.app.Repository.PerfilRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,9 @@ public class BibliotecarioServiceImple implements BibliotecarioService {
 
 	@Autowired
 	private BibliotecarioRepository bibliotecarioRepository;
+
+	@Autowired
+	PerfilRepository perfilRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -55,7 +62,15 @@ public class BibliotecarioServiceImple implements BibliotecarioService {
 	public MessageResponseDto criar(BibliotecarioFormDto bibliotecarioFormDto) {
 
 		Bibliotecario bibliotecarioASalvar = modelMapper.map(bibliotecarioFormDto, Bibliotecario.class);
+		Optional<Perfil> perfil = perfilRepository.findById(2L);
+		List<Perfil> perfils = new ArrayList<>();
+		if (perfil.isPresent()){
+			perfils.add(perfil.get());
+			bibliotecarioASalvar.setPerfis(perfils);
+		}
 		Bibliotecario billiotecarioSalvo = this.bibliotecarioRepository.save(bibliotecarioASalvar);
+
+
 
 		return MessageResponseDto.builder()
 				.message(String.format("Criado Bibliotecario de id %s", billiotecarioSalvo.getId())).build();

@@ -1,6 +1,6 @@
 package com.grupo3.app.Services;
 
-import com.grupo3.app.Entity.Aluno;
+import com.grupo3.app.Entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -22,12 +22,12 @@ public class TokenServiceImple implements TokenService{
 
     @Override
     public String gerarToken(Authentication authentication) {
-        Aluno userL = (Aluno) authentication.getPrincipal();
+        Usuario userLogado = (Usuario) authentication.getPrincipal();
         Date hoje = new Date();
         Date dataExpiration = new Date(hoje.getTime() + 8450000L);
         return Jwts.builder()
                 .setIssuer("Compasso")
-                .setSubject(userL.getId().toString())
+                .setSubject(userLogado.getId().toString())
                 .setIssuedAt(hoje)
                 .setExpiration(dataExpiration)
                 .signWith(SignatureAlgorithm.HS256, secret)
@@ -43,7 +43,6 @@ public class TokenServiceImple implements TokenService{
         }catch (Exception e){
             return false;
         }
-
     }
 
     @Override

@@ -1,9 +1,8 @@
 package com.grupo3.app.Config.Security;
 
-import com.grupo3.app.Entity.Aluno;
 import com.grupo3.app.Entity.Usuario;
-import com.grupo3.app.Repository.AlunoRepository;
-import com.grupo3.app.Repository.AutenticacaoRepository;
+import com.grupo3.app.Repository.UserRepository;
+//import com.grupo3.app.Services.TokenService;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +18,9 @@ import java.util.Optional;
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
     private TokenService tokenService;
-    private AutenticacaoRepository userRepository;
+    private UserRepository userRepository;
 
-    public AutenticacaoViaTokenFilter(TokenService tokenService, AutenticacaoRepository userRepository){
+    public AutenticacaoViaTokenFilter(TokenService tokenService, UserRepository userRepository){
         this.tokenService =tokenService;
         this.userRepository = userRepository;
     }

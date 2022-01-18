@@ -7,6 +7,7 @@ import com.grupo3.app.Dto.VincularLivroUserDto;
 import com.grupo3.app.Entity.Livro;
 import com.grupo3.app.Entity.Aluno;
 import com.grupo3.app.Repository.LivroRepository;
+import com.grupo3.app.Repository.PerfilRepository;
 import com.grupo3.app.Repository.AlunoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

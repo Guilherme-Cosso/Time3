@@ -1,8 +1,8 @@
 package com.grupo3.app.Config.Security;
 
-import com.grupo3.app.Repository.AlunoRepository;
-import com.grupo3.app.Repository.AutenticacaoRepository;
-import com.grupo3.app.Services.AutenticacaoServiceImple;
+import com.grupo3.app.Repository.UserRepository;
+import com.grupo3.app.Services.UserService;
+//import com.grupo3.app.Services.TokenService;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,12 +21,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    AutenticacaoServiceImple autenticacaoService;
-//    @Autowired
-//    private TokenService tokenService;
-//    @Autowired
-//    private AutenticacaoRepository userRepository;
+    @Autowired
+    UserService autenticacaoService;
+
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     @Bean
@@ -40,23 +42,25 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
                 authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/livro").hasRole("ADM")
+                .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
+                .antMatchers(HttpMethod.GET, "/aluno/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/livro").permitAll()
+                //Post Acesso a todos
                 .antMatchers(HttpMethod.POST, "/aluno/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/bibliotecario").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .anyRequest().authenticated();
-//                .anyRequest().authenticated()
-//                .and().csrf().disable();
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,userRepository), UsernamePasswordAuthenticationFilter.class);
-                //.and().formLogin();
+                .anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,userRepository), UsernamePasswordAuthenticationFilter.class);
+       //         .and().formLogin();
     }
 
     //
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
+    }
 
     // Recursos estaticos (Css, JS , etc ...)
     @Override

@@ -3,8 +3,7 @@ package com.grupo3.app.Controller;
 
 import com.grupo3.app.Dto.LoginForm;
 import com.grupo3.app.Dto.TokenDto;
-import com.grupo3.app.Services.AutenticacaoService;
-import com.grupo3.app.Services.AutenticacaoServiceImple;
+import com.grupo3.app.Services.UserService;
 import com.grupo3.app.Services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ import javax.validation.Valid;
 public class AutenticacaoController {
     
     @Autowired
-    AutenticacaoServiceImple autenticacaoService;
+    UserService autenticacaoService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -32,20 +31,16 @@ public class AutenticacaoController {
     @Autowired
     private TokenService tokenService;
 
-
     @PostMapping
-    public ResponseEntity<?> livroUser(@RequestBody @Valid LoginForm body) {
-
+    public ResponseEntity<?> User(@RequestBody @Valid LoginForm body) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(body.getEmail(),body.getSenha());
        try {
            Authentication authentication = authenticationManager.authenticate(authenticationToken);
            String token = tokenService.gerarToken(authentication);
-           System.out.println(token);
            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
        }catch (AuthenticationException e){
+           System.out.println(e);
             return  ResponseEntity.badRequest().build();
        }
-//        autenticacaoService.verificarUser(body);
-//        System.out.println(body.getEmail() +" "+body.getSenha());
     }
 }

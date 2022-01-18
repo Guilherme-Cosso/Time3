@@ -2,13 +2,18 @@ package com.grupo3.app.Services;
 
 import com.grupo3.app.Dto.AlunoDto;
 import com.grupo3.app.Dto.AlunoFormDto;
+import com.grupo3.app.Dto.PerfilDto;
 import com.grupo3.app.Entity.Aluno;
+import com.grupo3.app.Entity.Perfil;
 import com.grupo3.app.Repository.AlunoRepository;
+import com.grupo3.app.Repository.PerfilRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,12 +23,21 @@ public class AlunoServiceImple implements AlunoService{
     private AlunoRepository userRepository;
 
     @Autowired
+    private PerfilRepository perfilRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
 
     @Override
     public AlunoDto save(AlunoFormDto body) {
         Aluno user = modelMapper.map(body, Aluno.class);
+        Optional<Perfil> perfil = perfilRepository.findById(1L);
+        List<Perfil> perfils = new ArrayList<>();
+        if (perfil.isPresent()){
+            perfils.add(perfil.get());
+            user.setPerfis(perfils);
+        }
         Aluno userSave = this.userRepository.save(user);
         return  modelMapper.map(userSave, AlunoDto.class);
     }
