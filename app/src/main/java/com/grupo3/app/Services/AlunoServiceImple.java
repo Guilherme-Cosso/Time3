@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class AlunoServiceImple implements AlunoService{
 
     @Autowired
-    private AlunoRepository userRepository;
+    private AlunoRepository alunoRepository;
 
     @Autowired
     private PerfilRepository perfilRepository;
@@ -33,42 +33,52 @@ public class AlunoServiceImple implements AlunoService{
     @Override
     public AlunoDto save(AlunoFormDto body) {
         Aluno user = modelMapper.map(body, Aluno.class);
-        Random mat = new Random();
-        user.setMatricula(String.valueOf(mat.nextInt()));
+        user.setMatricula(Matricula());
         Optional<Perfil> perfil = perfilRepository.findById(1L);
         List<Perfil> perfils = new ArrayList<>();
         if (perfil.isPresent()){
             perfils.add(perfil.get());
             user.setPerfis(perfils);
         }
-        Aluno userSave = this.userRepository.save(user);
+        Aluno userSave = this.alunoRepository.save(user);
         return  modelMapper.map(userSave, AlunoDto.class);
+    }
+
+    private String Matricula(){
+        Random mat = new Random();
+        String matricula = String.valueOf(mat.nextInt());
+        Optional<Aluno> aluno = alunoRepository.findByMatricula(matricula);
+        while (aluno.isPresent()){
+            matricula = String.valueOf(mat.nextInt());
+            aluno = alunoRepository.findByMatricula(matricula);
+        }
+        return matricula;
     }
 
 
 
     @Override
     public AlunoDto getUser(Long id) {
-        Aluno user = this.userRepository.getOne(id);
+        Aluno user = this.alunoRepository.getOne(id);
         return modelMapper.map(user,AlunoDto.class);
     }
 
     @Override
     public List<AlunoDto> getUsers() {
-        List<Aluno> list = this.userRepository.findAll();
+        List<Aluno> list = this.alunoRepository.findAll();
         return  list.stream().map(pa ->  modelMapper.map(pa, AlunoDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public boolean getUserEmail(String email) {
-        List<Aluno> list = this.userRepository.findByEmail(email);
+        List<Aluno> list = this.alunoRepository.findByEmail(email);
         boolean resp = list.size() == 0;
         return resp;
     }
 
     @Override
     public AlunoDto updateUser(Long id, AlunoFormDto body) {
-        Aluno user = userRepository.getOne(id);
+        Aluno user = alunoRepository.getOne(id);
         user.setName(body.getName());
         user.setCpf(body.getCpf());
         user.setEmail(body.getEmail());
@@ -78,7 +88,7 @@ public class AlunoServiceImple implements AlunoService{
 
     @Override
     public void deletUser(Long id) {
-        userRepository.deleteById(id);
+        alunoRepository.deleteById(id);
     }
 
 }

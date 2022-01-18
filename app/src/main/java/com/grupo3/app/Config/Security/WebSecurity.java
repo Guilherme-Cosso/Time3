@@ -59,8 +59,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 //Aluno
                 .antMatchers(HttpMethod.PUT, "/aluno").hasRole("ALUNO")
                 .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
-                .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
-                .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
                 .antMatchers(HttpMethod.GET, "/livro/disponiveis").hasRole("ALUNO")
                 .antMatchers(HttpMethod.GET, "/livro/*").hasRole("ALUNO")
                 //ALL

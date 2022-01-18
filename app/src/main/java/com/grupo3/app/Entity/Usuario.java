@@ -29,9 +29,6 @@ public class Usuario implements UserDetails {
     private List<Perfil> perfis;
 
 	public void setSenha(String senha) {
-		System.out.println(senha);
-		System.out.println( new BCryptPasswordEncoder().encode(senha));
-		System.out.println( new BCryptPasswordEncoder().encode(senha));
 		this.senha = new BCryptPasswordEncoder().encode(senha);
 	}
 
