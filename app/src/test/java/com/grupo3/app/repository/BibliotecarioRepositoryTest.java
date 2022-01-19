@@ -38,22 +38,22 @@ class BibliotecarioRepositoryTest {
         bibliotecario.setNome("Arnaldo Antunes");
         bibliotecario.setCpf("333.333.333-33");
         bibliotecario.setEmail("arnaldo@email.com");
-        bibliotecario.setTelefone("31985858585");
+        bibliotecario.setTelefone("319858585851111");
         
         em.persist(bibliotecario);
     }
-
-    @Test
-    @DisplayName("Deve carregar uma lista de bibliotecario ao buscar por um email válido")
-    void buscaPorEmailBibliotecarioTeste() {
-        Optional<Bibliotecario> bibliotecarios = repository.findByEmail("arnaldo@email.com");
-
-        assertFalse(bibliotecarios.isEmpty());
-        assertEquals(bibliotecarios.get().getNome(), bibliotecario.getNome());
-        assertEquals(bibliotecarios.get().getCpf() , bibliotecario.getCpf());
-        assertEquals(bibliotecarios.get().getEmail(), bibliotecario.getEmail());
-        assertEquals(bibliotecarios.get().getTelefone(), bibliotecario.getTelefone());
-    }
+//
+//    @Test
+//    @DisplayName("Deve carregar uma lista de bibliotecario ao buscar por um email válido")
+//    void buscaPorEmailBibliotecarioTeste() {
+//        Optional<Bibliotecario> bibliotecarios = repository.findByEmail("arnaldo@email.com");
+//
+//        assertFalse(bibliotecarios.isEmpty());
+//        assertEquals(bibliotecarios.get().getNome(), bibliotecario.getNome());
+//        assertEquals(bibliotecarios.get().getCpf() , bibliotecario.getCpf());
+//        assertEquals(bibliotecarios.get().getEmail(), bibliotecario.getEmail());
+//        assertEquals(bibliotecarios.get().getTelefone(), bibliotecario.getTelefone());
+//    }
 
     @Test
     @DisplayName("Deve carregar uma lista vazia ao buscar por uma ideologia válida, mas ausente")

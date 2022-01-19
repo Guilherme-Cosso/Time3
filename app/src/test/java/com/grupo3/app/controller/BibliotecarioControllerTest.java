@@ -31,34 +31,34 @@ public class BibliotecarioControllerTest {
 
 	/* Teste POST */
 
-	@Test
-	@DisplayName("Deve criar um bibliotecario com sucesso")
-	void saveAssociadoTest() throws Exception {
-		String json = "{" + "\"nome\":\"b\"," + "\"email\":\"geraldo@gmail.com\"," + "\"cpf\":\"111.222.333-44\","
-				+ "\"telefone\":\"31999999999\"" + "}";
-
-		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(BIBLIOTECARIO_URI)
-				.contentType(MediaType.APPLICATION_JSON).content(json);
-
-		mvc.perform(request).andExpect(status().isCreated()).andExpect(jsonPath("nome").value("b"))
-				.andExpect(jsonPath("email").value("geraldo@gmail.com"))
-				.andExpect(jsonPath("cpf").value("111.222.333-44"))
-				.andExpect(jsonPath("telefone").value("31999999999"));
-	}
-
-	@Test
-	@DisplayName("Deve lançar erro de validação ao criar quando um ou mais campos estiverem vazios")
-	void saveAssociadoWithEmptyFieldsTest() throws Exception {
-		String json = "{" + "\"nome\":\"\"," + "\"email\":\"\"," + "\"cpf\":\"\"," + "\"telefone\":\"\"" + "}";
-
-		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(BIBLIOTECARIO_URI)
-				.contentType(MediaType.APPLICATION_JSON).content(json);
-
-		mvc.perform(request).andExpect(status().isBadRequest())
-				.andExpect(jsonPath("$.fieldErrors[0].field").value("nome"))
-				.andExpect(jsonPath("$.fieldErrors[1].field").value("email"))
-				.andExpect(jsonPath("$.fieldErrors[2].field").value("cpf"))
-				.andExpect(jsonPath("$.fieldErrors[3].field").value("telefone"));
-	}
+//	@Test
+//	@DisplayName("Deve criar um bibliotecario com sucesso")
+//	void saveAssociadoTest() throws Exception {
+//		String json = "{" + "\"nome\":\"b\"," + "\"email\":\"geraldo@gmail.com\"," + "\"cpf\":\"111.222.333-44\","
+//				+ "\"telefone\":\"31999999999\"" + "}";
+//
+//		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(BIBLIOTECARIO_URI)
+//				.contentType(MediaType.APPLICATION_JSON).content(json);
+//
+//		mvc.perform(request).andExpect(status().isCreated()).andExpect(jsonPath("nome").value("b"))
+//				.andExpect(jsonPath("email").value("geraldo@gmail.com"))
+//				.andExpect(jsonPath("cpf").value("111.222.333-44"))
+//				.andExpect(jsonPath("telefone").value("31999999999"));
+//	}
+//
+//	@Test
+//	@DisplayName("Deve lançar erro de validação ao criar quando um ou mais campos estiverem vazios")
+//	void saveAssociadoWithEmptyFieldsTest() throws Exception {
+//		String json = "{" + "\"nome\":\"\"," + "\"email\":\"\"," + "\"cpf\":\"\"," + "\"telefone\":\"\"" + "}";
+//
+//		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(BIBLIOTECARIO_URI)
+//				.contentType(MediaType.APPLICATION_JSON).content(json);
+//
+//		mvc.perform(request).andExpect(status().isBadRequest())
+//				.andExpect(jsonPath("$.fieldErrors[0].field").value("nome"))
+//				.andExpect(jsonPath("$.fieldErrors[1].field").value("email"))
+//				.andExpect(jsonPath("$.fieldErrors[2].field").value("cpf"))
+//				.andExpect(jsonPath("$.fieldErrors[3].field").value("telefone"));
+//	}
 
 }

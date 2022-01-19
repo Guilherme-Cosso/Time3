@@ -33,7 +33,7 @@ public class AlunoServiceImple implements AlunoService{
     @Override
     public AlunoDto save(AlunoFormDto body) {
         Aluno user = modelMapper.map(body, Aluno.class);
-        user.setMatricula(Matricula());
+        user.setMatricula(geraMatricula());
         Optional<Perfil> perfil = perfilRepository.findById(1L);
         List<Perfil> perfils = new ArrayList<>();
         if (perfil.isPresent()){
@@ -44,7 +44,7 @@ public class AlunoServiceImple implements AlunoService{
         return  modelMapper.map(userSave, AlunoDto.class);
     }
 
-    private String Matricula(){
+    private String geraMatricula(){
         Random mat = new Random();
         String matricula = String.valueOf(mat.nextInt());
         Optional<Aluno> aluno = alunoRepository.findByMatricula(matricula);
@@ -79,7 +79,7 @@ public class AlunoServiceImple implements AlunoService{
     @Override
     public AlunoDto updateUser(Long id, AlunoFormDto body) {
         Aluno user = alunoRepository.getOne(id);
-        user.setName(body.getName());
+        user.setNome(body.getNome());
         user.setCpf(body.getCpf());
         user.setEmail(body.getEmail());
         user.setTelefone(body.getTelefone());

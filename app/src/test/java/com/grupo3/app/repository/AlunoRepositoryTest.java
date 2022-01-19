@@ -23,7 +23,7 @@ public class AlunoRepositoryTest {
     @Test
     public void testFindEmailCorreto() {
         Aluno aluno = new Aluno();
-        aluno.setName("g@gmail.com");
+        aluno.setNome("g@gmail.com");
         List<Aluno> teste = alunoRepository.findByEmail("g@gmail.com");
         Assert.assertNotNull(teste);
         Assert.assertEquals(teste, alunoRepository.findByEmail("g@gmail.com"));

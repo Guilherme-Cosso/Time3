@@ -33,7 +33,7 @@ import com.grupo3.app.Services.BibliotecarioServiceImple;
 class BibliotecarioServiceImpleTest {
 
 	final String TEST_NOME = "Ronaldo Assis";
-	final String TEST_EMAIL = "ronaldo@email.com";
+	final String TEST_EMAIL = "ronaldzso@email.com";
 	final String CPF = "222.222.222-22";
 	final String TEST_TELEFONE = "319222222222";
 
@@ -50,13 +50,14 @@ class BibliotecarioServiceImpleTest {
 	@Autowired
 	private ModelMapper mapper;
 
+	@Test
 	void criaBibliotecario() {
 
-		bibliotecarioDto = new BibliotecarioDto();
-		bibliotecarioDto.setNome(TEST_NOME);
-		bibliotecarioDto.setEmail(TEST_EMAIL);
-		bibliotecarioDto.setCpf(CPF);
-		bibliotecarioDto.setTelefone(TEST_TELEFONE);
+		bibliotecarioFormDto = new BibliotecarioFormDto();
+		bibliotecarioFormDto.setNome(TEST_NOME);
+		bibliotecarioFormDto.setEmail(TEST_EMAIL);
+		bibliotecarioFormDto.setCpf(CPF);
+		bibliotecarioFormDto.setTelefone(TEST_TELEFONE);
 
 	}
 

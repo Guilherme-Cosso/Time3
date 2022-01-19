@@ -19,7 +19,7 @@ public class BibliotecarioFormDto {
 	private String email;
 	@NotBlank @Length(min = 10)
 	private String cpf;
-	@NotBlank @Length(min = 8) @Length(min = 15)
+	@NotBlank @Length(min = 8) @Length(max = 15)
 	private String telefone;
 	@NotBlank @Length(min = 8)
 	private String senha;
