@@ -42,10 +42,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
                 authorizeRequests()
-                //Adm
-                .antMatchers(HttpMethod.GET, "/aluno/*").hasRole("ADM")
+
                 .antMatchers(HttpMethod.GET, "/aluno").hasRole("ADM")
-                .antMatchers(HttpMethod.PUT, "/aluno").hasRole("ADM")
+                .antMatchers(HttpMethod.GET, "/livro/*").hasAnyRole("ADM","ALUNO")
+                .antMatchers(HttpMethod.PUT, "/aluno").hasAnyRole("ADM","ALUNO")
+                .antMatchers(HttpMethod.GET, "/livro/disponiveis").hasAnyRole("ADM","ALUNO")
+                .antMatchers(HttpMethod.GET, "/aluno/*").hasRole("ADM")
                 .antMatchers(HttpMethod.DELETE, "/aluno/*").hasRole("ADM")
                 .antMatchers(HttpMethod.GET, "/bibliotecario").hasRole("ADM")
                 .antMatchers(HttpMethod.GET, "/bibliotecario/*").hasRole("ADM")
@@ -55,17 +57,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/livro/*").hasRole("ADM")
                 .antMatchers(HttpMethod.GET, "/livro/usuario/{id}").hasRole("ADM")
                 .antMatchers(HttpMethod.DELETE, "/livro/*").hasRole("ADM")
-                .antMatchers(HttpMethod.GET, "/livro/*").hasRole("ADM")
-                //Aluno
-                .antMatchers(HttpMethod.PUT, "/aluno").hasRole("ALUNO")
-                .antMatchers(HttpMethod.GET, "/aluno").hasRole("ALUNO")
-                .antMatchers(HttpMethod.GET, "/livro/disponiveis").hasRole("ALUNO")
-                .antMatchers(HttpMethod.GET, "/livro/*").hasRole("ALUNO")
-                //ALL
                 .antMatchers(HttpMethod.GET, "/livro").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/aluno/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/bibliotecario").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,userRepository), UsernamePasswordAuthenticationFilter.class);

@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @AllArgsConstructor
@@ -13,14 +14,16 @@ import lombok.NoArgsConstructor;
 public class AlunoFormDto {
 
 	@NotBlank
-    private String name;
+    private String nome;
 	@NotBlank
     @Email
     private String email;
 	@NotBlank
+    @Length(min = 8) @Length(max = 15)
     private String cpf;
-	@NotBlank
+    @NotBlank @Length(min = 8) @Length(max = 15)
     private String telefone;
     @NotBlank
+    @Length(min = 8)
     private String senha;
 }

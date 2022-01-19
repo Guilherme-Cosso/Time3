@@ -40,7 +40,7 @@ public class AlunoController {
         return ResponseEntity.ok(this.service.getUsers());
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<AlunoDto> updateUser(@PathVariable Long id, @RequestBody  @Valid AlunoFormDto body){
         return ResponseEntity.ok(this.service.updateUser(id, body));
