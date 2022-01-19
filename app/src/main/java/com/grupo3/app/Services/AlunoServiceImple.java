@@ -46,7 +46,7 @@ public class AlunoServiceImple implements AlunoService{
 
     private String geraMatricula(){
         Random mat = new Random();
-        String matricula = String.valueOf(mat.nextInt());
+        String matricula = String.valueOf(mat.nextInt(100000)+1);
         Optional<Aluno> aluno = alunoRepository.findByMatricula(matricula);
         while (aluno.isPresent()){
             matricula = String.valueOf(mat.nextInt());
